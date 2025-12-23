@@ -4,6 +4,7 @@ metadata:
   name: odoo
   namespace: odoo
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: odoo
@@ -15,15 +16,25 @@ spec:
       containers:
         - name: odoo
           image: odoo-local:17
+          args:
+            - "-c"
+            - "/etc/odoo/odoo.conf"
           ports:
             - containerPort: 8069
           volumeMounts:
             - name: data
               mountPath: /var/lib/odoo
+            - name: odoo-config
+              mountPath: /etc/odoo/odoo.conf
+              subPath: odoo.conf
+              readOnly: true
       volumes:
         - name: data
           persistentVolumeClaim:
             claimName: odoo-data
+        - name: odoo-config
+          configMap:
+            name: odoo-config
       initContainers:
       - name: init-odoo-db
         image: odoo-local:17
