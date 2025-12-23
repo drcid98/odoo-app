@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://YOUR_GIT_REPO_URL
+    repoURL: https://github.com/drcid98/odoo-app.git
     targetRevision: main
     path: k8s
   destination:
