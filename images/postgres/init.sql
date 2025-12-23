@@ -1,0 +1,2 @@
+CREATE USER odoo WITH PASSWORD 'odoo';
+CREATE DATABASE odoo OWNER odoo;
