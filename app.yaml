@@ -9,6 +9,7 @@ spec:
     repoURL: https://github.com/drcid98/odoo-app.git
     targetRevision: main
     path: k8s
+    kustomize: {}
   destination:
     server: https://kubernetes.default.svc
     namespace: odoo
