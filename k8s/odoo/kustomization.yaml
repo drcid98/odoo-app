@@ -8,3 +8,4 @@ resources:
   - configmap.yaml
   - rustfs-s3-secret.yaml
   - addons-pvc.yaml
+  - python-deps-pvc.yaml

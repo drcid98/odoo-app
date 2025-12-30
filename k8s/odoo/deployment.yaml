@@ -20,6 +20,8 @@ spec:
             - "-c"
             - "/etc/odoo/odoo.conf"
           env:
+            - name: PYTHONPATH
+              value: /opt/odoo-python-deps
             - name: AWS_ACCESS_KEY_ID
               valueFrom:
                 secretKeyRef:
@@ -40,6 +42,8 @@ spec:
           volumeMounts:
             - name: data
               mountPath: /var/lib/odoo
+            - name: odoo-python-deps
+              mountPath: /opt/odoo-python-deps
             - name: odoo-addons
               mountPath: /var/lib/odoo/addons/17.0
             - name: odoo-config
@@ -53,10 +57,26 @@ spec:
         - name: odoo-config
           configMap:
             name: odoo-config
+        - name: odoo-python-deps
+          persistentVolumeClaim:
+            claimName: odoo-python-deps
         - name: odoo-addons
           persistentVolumeClaim:
             claimName: odoo-addons
       initContainers:
+        - name: install-python-deps
+          image: python:3.10-alpine
+          command: ["/bin/sh", "-lc"]
+          args:
+            - |
+              set -eux
+              python -V
+              pip install --no-cache-dir --target /deps fsspec s3fs boto3
+              python -c "import sys; sys.path.insert(0,'/deps'); import fsspec, s3fs, boto3; print('deps-ok')"
+              ls -la /deps | head
+          volumeMounts:
+            - name: odoo-python-deps
+              mountPath: /deps
         - name: init-odoo-addons
           image: alpine/git:latest
           command: ["/bin/sh", "-lc"]
