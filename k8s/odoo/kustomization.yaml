@@ -7,3 +7,4 @@ resources:
   - virtualservice.yaml
   - configmap.yaml
   - rustfs-s3-secret.yaml
+  - addons-pvc.yaml
