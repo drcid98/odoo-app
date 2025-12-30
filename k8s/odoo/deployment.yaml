@@ -95,6 +95,9 @@ spec:
               cp -R /tmp/storage/fs_attachment /addons/
               cp -R /tmp/storage/fs_attachment_s3 /addons/
 
+              git clone --depth 1 -b 17.0 https://github.com/OCA/server-env.git /tmp/server-env
+              cp -R /tmp/server-env/server_environment /addons/
+
               echo "Final addons content:"
               ls -la /addons
           volumeMounts:

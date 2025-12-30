@@ -13,7 +13,7 @@ data:
     data_dir = /var/lib/odoo
     admin_passwd = admin
 
-    server_wide_modules = web,fs_storage,fs_attachment,fs_attachment_s3
+    server_wide_modules = web
 
     ; RustFS (S3-compatible) config
     fs_attachment_s3_endpoint_url = http://rustfs.rustfs.svc.cluster.local:9000
