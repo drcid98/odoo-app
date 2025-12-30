@@ -56,3 +56,27 @@ spec:
         - name: odoo-addons
           persistentVolumeClaim:
             claimName: odoo-addons
+      initContainers:
+        - name: init-odoo-addons
+          image: alpine/git:latest
+          command: ["/bin/sh", "-lc"]
+          args:
+            - |
+              set -eux
+
+              echo "Cleaning addons directory"
+              rm -rf /addons/*
+
+              echo "Cloning OCA storage addons (17.0)"
+              git clone --depth 1 -b 17.0 https://github.com/OCA/storage.git /tmp/storage
+
+              echo "Copying required modules"
+              cp -R /tmp/storage/fs_storage /addons/
+              cp -R /tmp/storage/fs_attachment /addons/
+              cp -R /tmp/storage/fs_attachment_s3 /addons/
+
+              echo "Final addons content:"
+              ls -la /addons
+          volumeMounts:
+            - name: extra-addons
+              mountPath: /addons
