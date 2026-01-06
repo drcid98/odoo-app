@@ -12,6 +12,7 @@ RUN git clone --depth 1 -b 17.0 https://github.com/OCA/server-env.git /tmp/serve
     && cp -R /tmp/server-env/server_environment . \
     && rm -rf /tmp/server-env
 
+# etapa2
 FROM odoo:17
 
 USER root
