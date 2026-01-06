@@ -6,4 +6,4 @@ resources:
   - pvc.yaml
   - virtualservice.yaml
   - configmap.yaml
-  - rustfs-s3-secret.yaml
+  - gcs-s3-secret.yaml

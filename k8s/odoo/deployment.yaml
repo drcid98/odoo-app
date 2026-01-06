@@ -23,17 +23,17 @@ spec:
             - name: AWS_ACCESS_KEY_ID
               valueFrom:
                 secretKeyRef:
-                  name: rustfs-s3-credentials
+                  name: gcs-s3-credentials
                   key: AWS_ACCESS_KEY_ID
             - name: AWS_SECRET_ACCESS_KEY
               valueFrom:
                 secretKeyRef:
-                  name: rustfs-s3-credentials
+                  name: gcs-s3-credentials
                   key: AWS_SECRET_ACCESS_KEY
             - name: AWS_DEFAULT_REGION
               valueFrom:
                 secretKeyRef:
-                  name: rustfs-s3-credentials
+                  name: gcs-s3-credentials
                   key: AWS_DEFAULT_REGION
           ports:
             - containerPort: 8069

@@ -16,8 +16,8 @@ data:
 
     server_wide_modules = web
 
-    ; RustFS (S3-compatible) config
-    fs_attachment_s3_endpoint_url = http://rustfs.rustfs.svc.cluster.local:9000
-    fs_attachment_s3_bucket = odoo-filestore
-    fs_attachment_s3_region = us-east-1
-    fs_attachment_s3_use_ssl = false
+    ; Google Cloud Storage (S3-compatible) config
+    fs_attachment_s3_endpoint_url = https://storage.googleapis.com
+    fs_attachment_s3_bucket = test-odoo-bucket
+    fs_attachment_s3_region = auto
+    fs_attachment_s3_use_ssl = true
