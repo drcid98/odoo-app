@@ -1,7 +1,9 @@
-# Secrets - DO NOT commit real credentials
-k8s/odoo/gcs-s3-secret.yaml
+# Plain secrets - DO NOT commit
 *-secret.yaml
 !*-secret.example.yaml
+
+# Sealed secrets ARE safe to commit (they're encrypted)
+# gcs-s3-sealedsecret.yaml - OK to commit
 
 # Environment files with secrets
 .env
