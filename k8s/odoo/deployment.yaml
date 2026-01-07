@@ -21,21 +21,23 @@ spec:
             - "-c"
             - "/etc/odoo/odoo.conf"
           env:
-            - name: AWS_ACCESS_KEY_ID
-              valueFrom:
-                secretKeyRef:
-                  name: gcs-s3-credentials
-                  key: AWS_ACCESS_KEY_ID
-            - name: AWS_SECRET_ACCESS_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: gcs-s3-credentials
-                  key: AWS_SECRET_ACCESS_KEY
-            - name: AWS_DEFAULT_REGION
-              valueFrom:
-                secretKeyRef:
-                  name: gcs-s3-credentials
-                  key: AWS_DEFAULT_REGION
+            # - name: AWS_ACCESS_KEY_ID
+            #   valueFrom:
+            #     secretKeyRef:
+            #       name: gcs-s3-credentials
+            #       key: AWS_ACCESS_KEY_ID
+            # - name: AWS_SECRET_ACCESS_KEY
+            #   valueFrom:
+            #     secretKeyRef:
+            #       name: gcs-s3-credentials
+            #       key: AWS_SECRET_ACCESS_KEY
+            # - name: AWS_DEFAULT_REGION
+            #   valueFrom:
+            #     secretKeyRef:
+            #       name: gcs-s3-credentials
+            #       key: AWS_DEFAULT_REGION
+            - name: GOOGLE_APPLICATION_CREDENTIALS
+              value: /etc/odoo/token-gcs/token-gcs.json
           ports:
             - containerPort: 8069
           volumeMounts:
@@ -45,6 +47,9 @@ spec:
               mountPath: /etc/odoo/odoo.conf
               subPath: odoo.conf
               readOnly: true
+            - name: token-gcs
+              mountPath: /etc/odoo/token-gcs
+              readOnly: true
       volumes:
         - name: data
           persistentVolumeClaim:
@@ -52,3 +57,6 @@ spec:
         - name: odoo-config
           configMap:
             name: odoo-config
+        - name: token-gcs
+          secret:
+            secretName: token-gcs
