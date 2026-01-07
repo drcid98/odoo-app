@@ -19,5 +19,5 @@ data:
     ; Google Cloud Storage (S3-compatible) config
     fs_attachment_s3_endpoint_url = https://storage.googleapis.com
     fs_attachment_s3_bucket = test-odoo-bucket
-    fs_attachment_s3_region = auto
+    fs_attachment_s3_region = us
     fs_attachment_s3_use_ssl = true
