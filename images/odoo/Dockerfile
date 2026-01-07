@@ -18,7 +18,7 @@ FROM odoo:17
 
 USER root
 
-RUN pip install --no-cache-dir fsspec s3fs boto3 gcsfs google-cloud-storage
+RUN pip install --no-cache-dir fsspec[gcs] s3fs boto3 gcsfs google-cloud-storage
 
 COPY --from=addons-builder /addons /mnt/extra-addons/
 
