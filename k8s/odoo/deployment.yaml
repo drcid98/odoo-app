@@ -16,6 +16,7 @@ spec:
       containers:
         - name: odoo
           image: odoo-custom:17
+          imagePullPolicy: Always
           args:
             - "-c"
             - "/etc/odoo/odoo.conf"
